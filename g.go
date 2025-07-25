@@ -1585,10 +1585,7 @@ func (sr *StatReader) comparatorOrderBy(array []map[string]any, params *Properti
 	}
 
 	rowCount := len(array)
-	pageCount := int(math.Ceil(float64(rowCount * 1.0 / pageSize)))
-	if pageCount < 1 {
-		pageCount = 1
-	}
+	pageCount := max(int(math.Ceil(float64(rowCount*1.0/pageSize))), 1)
 
 	if pageNum > pageCount {
 		pageNum = pageCount

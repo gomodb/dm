@@ -76,7 +76,7 @@ func (lw *logWriter) doFlush(buffer *Dm_build_283) {
 }
 func (lw *logWriter) closeCurrentFile() {
 	if lw.logFile != nil {
-		lw.logFile.Close()
+		_ = lw.logFile.Close()
 		lw.logFile = nil
 	}
 }
@@ -86,7 +86,7 @@ func (lw *logWriter) createNewFile() *os.File {
 	lw.filePath = LogDir
 	if len(lw.filePath) > 0 {
 		if _, err := os.Stat(lw.filePath); err != nil {
-			os.MkdirAll(lw.filePath, 0755)
+			_ = os.MkdirAll(lw.filePath, 0755)
 		}
 		if _, err := os.Stat(lw.filePath + fileName); err != nil {
 			logFile, err := os.Create(lw.filePath + fileName)

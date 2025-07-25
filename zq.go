@@ -1205,7 +1205,7 @@ func (dm_build_1250 *dm_build_1221) dm_build_1249(dm_build_1251 []any) error {
 				dm_build_1250.dm_build_1114.dm_build_700.Dm_build_424(uint16(Dm_build_1020))
 				dm_build_1250.dm_build_1114.dm_build_700.Dm_build_444(dm_build_1251[i].(lobCtl).value)
 			default:
-				return errors.New("Bind param data failed by invalid param data type")
+				return errors.New("bind param data failed by invalid param data type")
 			}
 		}
 	}
@@ -1319,7 +1319,9 @@ func (dm_build_1255 *dm_build_1221) dm_build_1103() (any, error) {
 			dm_build_1256.updateCounts = rowCounts
 		}
 
-		dm_build_1255.dm_build_1295(&dm_build_1256)
+		if err := dm_build_1255.dm_build_1295(&dm_build_1256); err != nil {
+			return nil, err
+		}
 
 		if dm_build_1255.dm_build_1116 == EC_BP_WITH_ERROR.ErrCode {
 			dm_build_1255.dm_build_1290(dm_build_1256.updateCounts)
